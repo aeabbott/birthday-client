@@ -19,7 +19,6 @@ $(() => {
   // hiding alerts on page load
   $('.acct-success-message').hide()
   $('.password-mismatch-message').hide()
-  $('.password-wrong-message').hide()
   // navbar hide on page load-show after sign in
   $('.navbar').hide()
   // hiding birthday content on page load

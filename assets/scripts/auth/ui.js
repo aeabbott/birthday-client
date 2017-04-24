@@ -33,7 +33,7 @@ const signUpFailure = (error) => {
 
   const signInFailure = (error) => {
   // console.error('signIn failed ran data is:', error)
-  $('.password-wrong-message').show()
+  $('.password-mismatch-message').show()
 }
 
 const changePasswordSuccess = (data) => {
