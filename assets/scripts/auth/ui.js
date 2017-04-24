@@ -21,6 +21,7 @@ const signUpFailure = (error) => {
   $('.password-mismatch-message').hide()
   $('acct-success-message').hide()
   $('.birthday-content').show()
+  $('.navbar').show()
   }
 
   const signInFailure = (error) => {
@@ -28,10 +29,21 @@ const signUpFailure = (error) => {
   $('.password-wrong-message').show()
 }
 
+const changePasswordSuccess = (data) => {
+  console.log('changePassword was successful and data is:', data)
+  store.user = data.user
+}
+
+const changePasswordFailure = (error) => {
+  console.error('changePassword failed failed ran data is:', error)
+}
+
 
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
-  signInFailure
+  signInFailure,
+  changePasswordSuccess,
+  changePasswordFailure
 }
