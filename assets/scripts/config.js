@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://ga-wdi-boston.herokuapp.com'
+    production: 'https://pacific-brushlands-38706.herokuapp.com/'
   }
 }
 
