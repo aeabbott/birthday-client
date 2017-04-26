@@ -3,6 +3,7 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./auth/events.js')
+const birthdayEvents = require('./birthday/events.js')
 
 $(() => {
   setAPIOrigin(location, config)
@@ -27,5 +28,6 @@ $(() => {
   $('#register-form-link').on('click', authEvents.showSignUpForm)
   $('#login-form-link').on('click', authEvents.showLogInForm)
   $('.change-pass-btn').on('click', authEvents.displayChangePassModal)
-
+  // when show birthdays is clicked, display all the birthdays
+  $('.get-all-birthdays').on('click', birthdayEvents.displayAllBirthdays)
 })
