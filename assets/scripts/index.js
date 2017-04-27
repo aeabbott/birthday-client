@@ -30,4 +30,7 @@ $(() => {
   $('.change-pass-btn').on('click', authEvents.displayChangePassModal)
   // when show birthdays is clicked, display all the birthdays
   $('.get-all-birthdays').on('click', birthdayEvents.displayAllBirthdays)
+  $('.add-birthday').on('click', birthdayEvents.displayAddBirthdayModal)
+  // save button is pressed on add new birthdays
+  $('#add-birthday').on('submit', birthdayEvents.createNewBirthday)
 })

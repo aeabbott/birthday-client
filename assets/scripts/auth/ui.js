@@ -20,7 +20,7 @@ const signUpFailure = (error) => {
   }
 
   const signInSuccess = (data) => {
-    // console.log('signIn success ran data is:', data)
+    console.log('signIn success ran data is:', data)
     store.user = data.user
   $('.login-signup-container').hide()
   $('.password-wrong-message').hide()

@@ -11,7 +11,18 @@ const indexBirthdays = function () {
   })
 }
 
+const createBirthday = function (data) {
+  return $.ajax({
+    method: 'POST',
+    url: config.apiOrigin + '/birthdays/',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
 
 module.exports = {
-  indexBirthdays
+  indexBirthdays,
+  createBirthday
 }
