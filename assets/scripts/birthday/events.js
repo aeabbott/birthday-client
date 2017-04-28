@@ -18,7 +18,7 @@ const displayAddBirthdayModal = function (event) {
   $('#add-birthday-modal').modal({show:true})
 }
 
-// function to create birthday when save changes button is pressed in add birthday
+// function to create birthday when save changes button is pressed inside add birthday modal
 
 const createNewBirthday = function (event) {
   event.preventDefault()
@@ -33,10 +33,21 @@ const createNewBirthday = function (event) {
   }
 }
 
-
+// function to update birthday when save changes button is pressed inside update birthday modal
+const updateBirthday = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  let id = $('.update-birthday-btn').data('id')
+  console.log(id, data)
+  birthdayApi.patchBirthday(id, data)
+  .then(birthdayUi.onSuccessPatchBirthday)
+  .catch(birthdayUi.onError)
+}
 
 module.exports = {
   displayAllBirthdays,
   displayAddBirthdayModal,
-  createNewBirthday
+  createNewBirthday,
+  updateBirthday
+
 }

@@ -3,7 +3,9 @@
 // const birthdayStore = require('../birthdayStore')
 // link required files
 const showAllBirthdaysTemplate = require('../templates/birthday-listing.handlebars')
+const getFormFields = require(`../../../lib/get-form-fields`)
 const birthdayApi = require('./api.js')
+
 
 // start functions
 const onSuccessDisplayBirthdays = function (data) {
@@ -13,6 +15,10 @@ const onSuccessDisplayBirthdays = function (data) {
   $('.show-all-birthdays-content').append(showAllBirthdays)
   // when the remove birthday button is clicked in the handle bars list
   $('.remove-birthday-btn').on('click', removeBirthday)
+  $('.update-birthday-btn').on('click', displayUpdateBirthdayModal)
+  // save button is pressed inside udpate birthday modal to update birthday
+
+
 }
 
 const onError = function (response) {
@@ -26,10 +32,7 @@ const createBirthdaySuccess = function (data) {
   console.log(data.birthday)
 }
 
-const onSuccessRemoveBirthday = function (event) {
-  console.log('remove birthday successful was ran')
-}
-
+// remove birthday
 const removeBirthday = function (data) {
   event.preventDefault()
   console.log('remove birthday button was pressed')
@@ -40,11 +43,34 @@ const removeBirthday = function (data) {
   .catch(onError)
 }
 
+const onSuccessRemoveBirthday = function (event) {
+  console.log('remove birthday successful was ran')
+}
+
+// update birthday modal
+const displayUpdateBirthdayModal = function (event) {
+  event.preventDefault()
+  let id = $(this).data('id')
+  console.log('update birthday button was pressed' + id)
+  $('#update-birthday-modal').modal({show:true})
+
+}
+
+
+
+const onSuccessPatchBirthday = function (data) {
+  console.log('patch birthday success ran', data)
+
+}
+
+
 
 module.exports = {
   onSuccessDisplayBirthdays,
   onError,
   createBirthdaySuccess,
-  onSuccessRemoveBirthday
+  displayUpdateBirthdayModal,
+  onSuccessRemoveBirthday,
+  onSuccessPatchBirthday
 
 }

@@ -33,8 +33,20 @@ const destroyBirthday = function (id) {
   })
 }
 
+const patchBirthday = function (id, data) {
+  return $.ajax({
+    url: config.apiOrigin + '/birthdays/' + id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   indexBirthdays,
   createBirthday,
-  destroyBirthday
+  destroyBirthday,
+  patchBirthday
 }

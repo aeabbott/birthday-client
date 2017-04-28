@@ -31,7 +31,7 @@ $(() => {
   // when show birthdays is clicked, display all the birthdays
   $('.get-all-birthdays').on('click', birthdayEvents.displayAllBirthdays)
   $('.add-birthday').on('click', birthdayEvents.displayAddBirthdayModal)
-  // save button is pressed on add new birthdays
+  // save button is pressed inside create birthday modal to add new birthdays
   $('#add-birthday').on('submit', birthdayEvents.createNewBirthday)
-
+  $('#update-birthday').on('submit', birthdayEvents.updateBirthday)
 })
