@@ -1,6 +1,7 @@
 const config = require('../config')
 const store = require('../store')
 
+
 const indexBirthdays = function () {
   return $.ajax({
     url: config.apiOrigin + '/birthdays',
@@ -25,7 +26,10 @@ const createBirthday = function (data) {
 const destroyBirthday = function (id) {
   return $.ajax({
     url: config.apiOrigin + '/birthdays/' + id,
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 

@@ -30,10 +30,11 @@ const onSuccessRemoveBirthday = function (event) {
   console.log('remove birthday successful was ran')
 }
 
-const removeBirthday = function (id) {
+const removeBirthday = function (data) {
   event.preventDefault()
-  console.log('remove birthday button was pressed' + id)
+  console.log('remove birthday button was pressed')
   $(this).closest('ul').remove()
+  let id = $(this).data('id')
   birthdayApi.destroyBirthday(id)
   .then(onSuccessRemoveBirthday)
   .catch(onError)
