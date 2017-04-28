@@ -33,6 +33,8 @@ const createNewBirthday = function (event) {
   }
 }
 
+
+
 module.exports = {
   displayAllBirthdays,
   displayAddBirthdayModal,

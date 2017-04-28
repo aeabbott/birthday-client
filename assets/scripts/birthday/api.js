@@ -22,7 +22,15 @@ const createBirthday = function (data) {
   })
 }
 
+const destroyBirthday = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/birthdays/' + id,
+    method: 'DELETE'
+  })
+}
+
 module.exports = {
   indexBirthdays,
-  createBirthday
+  createBirthday,
+  destroyBirthday
 }

@@ -33,4 +33,5 @@ $(() => {
   $('.add-birthday').on('click', birthdayEvents.displayAddBirthdayModal)
   // save button is pressed on add new birthdays
   $('#add-birthday').on('submit', birthdayEvents.createNewBirthday)
+
 })
