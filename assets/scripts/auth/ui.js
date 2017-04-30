@@ -50,6 +50,7 @@ const signOutSuccess = (data) => {
   $('.login-signup-container').show()
   $('.birthday-content').hide()
   $('.navbar').hide()
+  $('.birthdays-list').hide()
 
 }
 

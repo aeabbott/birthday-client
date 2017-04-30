@@ -17,6 +17,7 @@ require('./example')
 
 $(() => {
   authEvents.addHandlers()
+
   // hiding alerts on page load
   $('.acct-success-message').hide()
   $('.password-mismatch-message').hide()
@@ -34,4 +35,6 @@ $(() => {
   // save button is pressed inside create birthday modal to add new birthdays
   $('#add-birthday').on('submit', birthdayEvents.createNewBirthday)
   $('#update-birthday').on('submit', birthdayEvents.updateBirthday)
+  // update this later
+  $('.get-all-birthdays').on('click', birthdayEvents.getBirthdaysThirtyDays)
 })

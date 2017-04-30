@@ -5,6 +5,8 @@
 const showAllBirthdaysTemplate = require('../templates/birthday-listing.handlebars')
 const getFormFields = require(`../../../lib/get-form-fields`)
 const birthdayApi = require('./api.js')
+// const todayDate = require('./getCurrentDate.js')
+
 
 
 // start functions
@@ -56,13 +58,39 @@ const displayUpdateBirthdayModal = function (event) {
 
 }
 
-
-
 const onSuccessPatchBirthday = function (data) {
   console.log('patch birthday success ran', data)
-
 }
 
+// show # of birthays coming up
+const onSuccessStats = function (data) {
+  // get today's month and date  and change it to a number to compare as an int
+  const today = new Date()
+  const date = today.getMonth()+1+ '-' + today.getDate()
+  const dateParse = date.replace('-', '')
+  const dateAsNumber = parseInt(dateParse, 10)
+  // Create and array of the birthdays with only the month and date as an int
+  const birthdaysOnly = data.birthdays.map(function (a) {
+    return a.born_on.substring(5, 10).replace('-', '')
+  })
+  const birthdaysAsNumbers = birthdaysOnly.map(Number)
+  // filter through new array and return the number of birthdays that within 30 days
+  function isBigger (value) { return value >= dateAsNumber}
+  const filteredBirthdays = birthdaysAsNumbers.filter(isBigger)
+  // count the filtered birthdays array to show how many birthdays are coming up
+  const upcomingBirthdays = filteredBirthdays.length
+
+  $('#birthday-stats').text('You have ' + upcomingBirthdays + ' birthdays remaining this year!')
+
+  console.log(date)
+  console.log(dateParse)
+  console.log(dateAsNumber)
+  console.log(birthdaysOnly)
+  console.log(birthdaysAsNumbers)
+  console.log(filteredBirthdays)
+  console.log(upcomingBirthdays)
+
+}
 
 
 module.exports = {
@@ -71,6 +99,7 @@ module.exports = {
   createBirthdaySuccess,
   displayUpdateBirthdayModal,
   onSuccessRemoveBirthday,
-  onSuccessPatchBirthday
+  onSuccessPatchBirthday,
+  onSuccessStats
 
 }
