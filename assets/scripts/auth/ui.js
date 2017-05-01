@@ -20,7 +20,7 @@ const signUpFailure = (error) => {
   }
 
   const signInSuccess = (data) => {
-    // console.log('signIn success ran data is:', data)
+    console.log('signIn success ran data is:', data)
     store.user = data.user
   $('.login-signup-container').hide()
   $('.password-wrong-message').hide()
@@ -29,6 +29,8 @@ const signUpFailure = (error) => {
   $('.birthday-content').show()
   $('.navbar').show()
   $('#login-form')[0].reset()
+  $('.birthday-created-message').hide()
+  $('.birthday-updated-message').hide()
   }
 
   const signInFailure = (error) => {
@@ -50,6 +52,8 @@ const signOutSuccess = (data) => {
   $('.login-signup-container').show()
   $('.birthday-content').hide()
   $('.navbar').hide()
+  $('.birthdays-list').hide()
+  $('#birthday-stats').hide()
 
 }
 

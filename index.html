@@ -100,8 +100,105 @@
 </div>
 <!-- App content after log-in -->
 <div class = 'birthday-content'>
-  <h1> Welcome @username</h1>
-  <h2> Today is *name's b-day</h2>
+  <!-- <h1> Welcome @username</h1> -->
+  <!-- <h2 id = 'birthday-stats'> Do you have any friends birthday's left this year?</h2> -->
+  <button type="button" class="btn btn-primary get-all-birthdays">Show Birthdays</button>
+  <!-- Add Bday  -->
+  <button type="button" class="btn btn-primary add-birthday">Add Birthday</button>
+  <!-- Add Bday Modal -->
+  <form id="add-birthday">
+  <fieldset>
+  <div id="add-birthday-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+    	<div class="modal-content">
+      <div class="modal-header">
+          <h3>Add a Birthday <span class="extra-title muted"></span></h3>
+      </div>
+      <div class="modal-body form-horizontal">
+          <div class="control-group">
+              <label for="birthday_given_name" class="control-label">First Name</label>
+              <div class="controls">
+              <input type="text" name="birthday[given_name]" required>
+              </div>
+          </div>
+          <div class="control-group" >
+              <label for="birthday_family_name" class="control-label">Last Name</label>
+              <div class="controls">
+                  <input type="text" name="birthday[family_name]" required>
+              </div>
+          </div>
+          <div class="control-group">
+              <label for="birthday_nickname" class="control-label">Nickname</label>
+              <div class="controls">
+                  <input type="text" name="birthday[nickname]">
+              </div>
+              <div>
+                <label for="bday" class="control-label">Enter your birthday:</label>
+                  <input type="date" id="bday" name="birthday[born_on]" required>
+                  <span class="validity"></span>
+                </div>
+          </div>
+      </div>
+      <div class = "alert-container">
+      <div class="alert alert-success birthday-created-message">
+        <strong>Success!</strong> Birthday created!
+      </div>
+      <div class="modal-footer">
+          <button type = "button" class="btn cls-add-birthday-modal" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button type = "submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </fieldset>
+  </form>
+  <!-- Update Birthday -->
+  <form id="update-birthday" data-id="{{birthday.id}}" >
+  <fieldset>
+  <div id="update-birthday-modal" data-id="{{birthday.id}}" class="modal fade"  tabindex="-1" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h3>Update Birthday <span class="extra-title muted"></span></h3>
+      </div>
+      <div class="modal-body form-horizontal">
+          <div class="control-group">
+              <label for="birthday_given_name" class="control-label">First Name</label>
+              <div class="controls">
+              <input type="text" name="birthday[given_name]" id= 'given-name-field' required>
+              </div>
+          </div>
+          <div class="control-group" >
+              <label for="birthday_family_name" class="control-label">Last Name</label>
+              <div class="controls">
+                  <input type="text" name="birthday[family_name]" id= "family-name-field" required>
+              </div>
+          </div>
+          <div class="control-group">
+              <label for="birthday_nickname" class="control-label">Nickname</label>
+              <div class="controls">
+                  <input type="text" name="birthday[nickname]" id = "nickname-field">
+              </div>
+              <div>
+                <label for="bday" class="control-label">Enter your birthday:</label>
+                  <input type="date" id="bday" name="birthday[born_on]" min="1900-01-01" max="2500-01-01" required>
+                  <span class="validity"></span>
+                </div>
+          </div>
+      </div>
+      <div class = "alert-container">
+      <div class="alert alert-success birthday-updated-message">
+        <strong>Success!</strong> Birthday updated!
+      </div>
+      <div class="modal-footer">
+          <button type = "button" class="btn cls-add-birthday-modal" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button type = "submit" class="btn btn-primary save-update-birthday" data-id= "{{birthday.id}}">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </fieldset>
+  </form>
 </div>
 <!-- Password Modal -->
 <form id="change-password">
@@ -136,6 +233,12 @@
 </div>
 </fieldset>
 </form>
+
+<!-- handlebars to show birthdays -->
+<div id="show-all-birthdays" class="content show-all-birthdays-content">
+</div>
+
+
 
 
 

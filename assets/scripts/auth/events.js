@@ -27,7 +27,7 @@ const showSignUpForm = function (event) {
 
 const onSignIn = function (event) {
   event.preventDefault()
-  // console.log('sign in ran')
+  console.log('sign in ran')
   const data = getFormFields(this)
   api.signIn(data)
     .then(ui.signInSuccess)
@@ -43,7 +43,6 @@ const showLogInForm = function (event) {
   $('#register-form-link').removeClass('active')
   $(this).addClass('active')
 }
-
 
 const onSignOut = function (event) {
   event.preventDefault()
