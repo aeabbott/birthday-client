@@ -13,6 +13,8 @@ const birthdayApi = require('./api.js')
 const onSuccessDisplayBirthdays = function (data) {
   console.log('show bdays was successful' + data.birthdays)
   let showAllBirthdays = showAllBirthdaysTemplate({birthdays: data.birthdays})
+  // empty the handle bars list first
+  $('.show-all-birthdays-content').empty()
   // show the handlebars list
   $('.show-all-birthdays-content').append(showAllBirthdays)
   // when the remove birthday button is clicked in the handle bars list
@@ -32,6 +34,7 @@ const createBirthdaySuccess = function (data) {
   $('#add-birthday')[0].reset()
   console.log(data.birthday)
   $('.birthday-created-message').show()
+
 }
 
 // remove birthday

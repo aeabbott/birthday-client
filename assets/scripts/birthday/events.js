@@ -6,6 +6,8 @@ const birthdayUi = require('./ui.js')
 // function run when show all bdays button is pressed
 const displayAllBirthdays = function () {
   console.log('display all birthdays ran')
+
+
   birthdayApi.indexBirthdays()
   .then(birthdayUi.onSuccessDisplayBirthdays)
   .catch(birthdayUi.onError)
@@ -48,15 +50,15 @@ if (birthday.given_name.length !== 0 && birthday.born_on.length !== 0){
 }
 }
 
-//get birthdays in the next 30 days
-const getBirthdaysThirtyDays = function (){
-  console.log('get birthdays in the next 30 days function ran')
-  birthdayApi.indexBirthdays()
-  .then(birthdayUi.onSuccessStats)
-  .catch(birthdayUi.onError)
-}
+// //get birthdays in the next 30 days
+// const getBirthdaysThirtyDays = function (){
+//   console.log('get birthdays in the next 30 days function ran')
+//   birthdayApi.indexBirthdays()
+//   .then(birthdayUi.onSuccessStats)
+//   .catch(birthdayUi.onError)
+// }
 
-//hide alerts when modals are closed
+// hide alerts when modals are closed
 const hideMessages = function () {
   $('.birthday-created-message').hide()
   $('.birthday-updated-message').hide()
@@ -67,7 +69,7 @@ module.exports = {
   displayAddBirthdayModal,
   createNewBirthday,
   updateBirthday,
-  getBirthdaysThirtyDays,
+  // getBirthdaysThirtyDays
   hideMessages
 
 }
