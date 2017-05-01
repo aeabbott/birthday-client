@@ -1,7 +1,7 @@
 const config = require('../config')
 const store = require('../store')
 
-
+// show all birthdays
 const indexBirthdays = function () {
   return $.ajax({
     url: config.apiOrigin + '/birthdays',
@@ -12,6 +12,18 @@ const indexBirthdays = function () {
   })
 }
 
+// get one birthday
+const showBirthday = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/birthdays/' + id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+// create one birthday
 const createBirthday = function (data) {
   return $.ajax({
     method: 'POST',
@@ -46,6 +58,7 @@ const patchBirthday = function (id, data) {
 
 module.exports = {
   indexBirthdays,
+  showBirthday,
   createBirthday,
   destroyBirthday,
   patchBirthday

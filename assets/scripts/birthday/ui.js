@@ -29,9 +29,9 @@ const onError = function (response) {
 
 const createBirthdaySuccess = function (data) {
   console.log('Your request was successful and returned no content')
-  // I don't think I need the birthdayStore, but we'll see
-  // birthdayStore.birthdayStore = data.birthday
+  $('#add-birthday')[0].reset()
   console.log(data.birthday)
+  $('.birthday-created-message').show()
 }
 
 // remove birthday
@@ -56,40 +56,52 @@ const displayUpdateBirthdayModal = function (event) {
   console.log('update birthday button was pressed' + id)
   $('#update-birthday-modal').modal({show:true})
 
+  birthdayApi.showBirthday(id)
+  .then(onSuccessPreFillBirthdayFields)
+  .catch(onError)
 }
 
 const onSuccessPatchBirthday = function (data) {
   console.log('patch birthday success ran', data)
+  $('.birthday-updated-message').show()
 }
 
-// show # of birthays coming up
-const onSuccessStats = function (data) {
-  // get today's month and date  and change it to a number to compare as an int
-  const today = new Date()
-  const date = today.getMonth()+1+ '-' + today.getDate()
-  const dateParse = date.replace('-', '')
-  const dateAsNumber = parseInt(dateParse, 10)
-  // Create and array of the birthdays with only the month and date as an int
-  const birthdaysOnly = data.birthdays.map(function (a) {
-    return a.born_on.substring(5, 10).replace('-', '')
-  })
-  const birthdaysAsNumbers = birthdaysOnly.map(Number)
-  // filter through new array and return the number of birthdays that within 30 days
-  function isBigger (value) { return value >= dateAsNumber}
-  const filteredBirthdays = birthdaysAsNumbers.filter(isBigger)
-  // count the filtered birthdays array to show how many birthdays are coming up
-  const upcomingBirthdays = filteredBirthdays.length
+// // show # of birthays coming up
+// const onSuccessStats = function (data) {
+//   // get today's month and date  and change it to a number to compare as an int
+//   const today = new Date()
+//   const date = today.getMonth()+1+ '-' + today.getDate()
+//   const dateParse = date.replace('-', '')
+//   const dateAsNumber = parseInt(dateParse, 10)
+//   // Create and array of the birthdays with only the month and date as an int
+//   const birthdaysOnly = data.birthdays.map(function (a) {
+//     return a.born_on.substring(5, 10).replace('-', '')
+//   })
+//   const birthdaysAsNumbers = birthdaysOnly.map(Number)
+//   // filter through new array and return the number of birthdays that within 30 days
+//   function isBigger (value) { return value >= dateAsNumber}
+//   const filteredBirthdays = birthdaysAsNumbers.filter(isBigger)
+//   // count the filtered birthdays array to show how many birthdays are coming up
+//   const upcomingBirthdays = filteredBirthdays.length
+//
+//   $('#birthday-stats').text('You have ' + upcomingBirthdays + ' birthdays remaining this year!')
+//
+//   console.log(date)
+//   console.log(dateParse)
+//   console.log(dateAsNumber)
+//   console.log(birthdaysOnly)
+//   console.log(birthdaysAsNumbers)
+//   console.log(filteredBirthdays)
+//   console.log(upcomingBirthdays)
+//
+// }
 
-  $('#birthday-stats').text('You have ' + upcomingBirthdays + ' birthdays remaining this year!')
 
-  console.log(date)
-  console.log(dateParse)
-  console.log(dateAsNumber)
-  console.log(birthdaysOnly)
-  console.log(birthdaysAsNumbers)
-  console.log(filteredBirthdays)
-  console.log(upcomingBirthdays)
-
+const onSuccessPreFillBirthdayFields = function (data){
+  $('#given-name-field').val(data.birthday.given_name)
+  $('#family-name-field').val(data.birthday.family_name)
+  $('#nickname-field').val(data.birthday.nickname)
+  $('#bday').val(data.birthday.born_on)
 }
 
 
@@ -99,7 +111,7 @@ module.exports = {
   createBirthdaySuccess,
   displayUpdateBirthdayModal,
   onSuccessRemoveBirthday,
-  onSuccessPatchBirthday,
-  onSuccessStats
+  onSuccessPatchBirthday
+  // onSuccessStats
 
 }

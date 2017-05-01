@@ -37,11 +37,15 @@ const createNewBirthday = function (event) {
 const updateBirthday = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  const birthday = data.birthday
   let id = $('.update-birthday-btn').data('id')
   console.log(id, data)
+
+if (birthday.given_name.length !== 0 && birthday.born_on.length !== 0){
   birthdayApi.patchBirthday(id, data)
   .then(birthdayUi.onSuccessPatchBirthday)
   .catch(birthdayUi.onError)
+}
 }
 
 //get birthdays in the next 30 days
@@ -52,11 +56,18 @@ const getBirthdaysThirtyDays = function (){
   .catch(birthdayUi.onError)
 }
 
+//hide alerts when modals are closed
+const hideMessages = function () {
+  $('.birthday-created-message').hide()
+  $('.birthday-updated-message').hide()
+}
+
 module.exports = {
   displayAllBirthdays,
   displayAddBirthdayModal,
   createNewBirthday,
   updateBirthday,
-  getBirthdaysThirtyDays
+  getBirthdaysThirtyDays,
+  hideMessages
 
 }

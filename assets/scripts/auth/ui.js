@@ -29,6 +29,8 @@ const signUpFailure = (error) => {
   $('.birthday-content').show()
   $('.navbar').show()
   $('#login-form')[0].reset()
+  $('.birthday-created-message').hide()
+  $('.birthday-updated-message').hide()
   }
 
   const signInFailure = (error) => {
@@ -51,6 +53,7 @@ const signOutSuccess = (data) => {
   $('.birthday-content').hide()
   $('.navbar').hide()
   $('.birthdays-list').hide()
+  $('#birthday-stats').hide()
 
 }
 
