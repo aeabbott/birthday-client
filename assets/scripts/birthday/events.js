@@ -58,12 +58,21 @@ const onClearBirthdays = function (event) {
   birthdayUi.clearBirthdays()
 }
 
+// get birthdays in the next 30 days
+const getBirthdaysThirtyDays = function () {
+  console.log('get birthdays in the next 30 days function ran')
+  birthdayApi.indexBirthdays()
+  .then(birthdayUi.onSuccessStats)
+  .catch(birthdayUi.onError)
+}
+
 module.exports = {
   displayAllBirthdays,
   displayAddBirthdayModal,
   createNewBirthday,
   updateBirthday,
   hideMessages,
-  onClearBirthdays
+  onClearBirthdays,
+  getBirthdaysThirtyDays
 
 }

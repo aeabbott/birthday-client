@@ -36,7 +36,7 @@ $(() => {
   $('#add-birthday').on('submit', birthdayEvents.createNewBirthday)
   $('#update-birthday').on('submit', birthdayEvents.updateBirthday)
   // update this later
-  // $('.get-all-birthdays').on('click', birthdayEvents.getBirthdaysThirtyDays)
+  $('.get-all-birthdays').on('click', birthdayEvents.getBirthdaysThirtyDays)
   // hide success & failure messages when modals are closed
   $('.cls-add-birthday-modal').on('click', birthdayEvents.hideMessages)
   $('.clear-birthdays').on('click', birthdayEvents.onClearBirthdays)

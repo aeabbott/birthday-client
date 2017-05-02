@@ -1,12 +1,12 @@
 'use Strict'
 
-// const birthdayStore = require('../birthdayStore')
 // link required files
 const showAllBirthdaysTemplate = require('../templates/birthday-listing.handlebars')
-const getFormFields = require(`../../../lib/get-form-fields`)
+const showOneBirthdayTemplate = require('../templates/single-birthday-list.handlebars')
 const birthdayApi = require('./api.js')
 
-// start functions
+
+// start functions- function to show all the birthdays with handlebars list
 const onSuccessDisplayBirthdays = function (data) {
   console.log('show bdays was successful' + data.birthdays)
   let showAllBirthdays = showAllBirthdaysTemplate({birthdays: data.birthdays})
@@ -30,6 +30,13 @@ const createBirthdaySuccess = function (data) {
   console.log(data.birthday)
   $('.birthday-created-message').show()
   // Add the newly created birthday to the list, when the list is already shown
+  const addOneBirthday = showOneBirthdayTemplate({birthday: data.birthday})
+  console.log(addOneBirthday)
+  $('.show-all-birthdays-content').append(addOneBirthday)
+  // when the remove birthday button is clicked in the handle bars list
+  $('.remove-birthday-btn').on('click', removeBirthday)
+    // save button is pressed inside udpate birthday modal to update birthday
+  $('.update-birthday-btn').on('click', displayUpdateBirthdayModal)
 }
 
 // remove birthday
@@ -53,7 +60,6 @@ const displayUpdateBirthdayModal = function (event) {
   let id = $(this).data('id')
   console.log('update birthday button was pressed' + id)
   $('#update-birthday-modal').modal({show:true})
-
   birthdayApi.showBirthday(id)
   .then(onSuccessPreFillBirthdayFields)
   .catch(onError)
@@ -68,11 +74,43 @@ const onSuccessPreFillBirthdayFields = function (data){
   $('#given-name-field').val(data.birthday.given_name)
   $('#family-name-field').val(data.birthday.family_name)
   $('#nickname-field').val(data.birthday.nickname)
-  $('#bday').val(data.birthday.born_on)
+  $('#bday').attr(data.birthday.born_on)
 }
 
 const clearBirthdays = function () {
   $('.content').empty()
+}
+
+
+// show # of birthdays coming up
+const onSuccessStats = function (data) {
+  // get current date
+  const today = new Date()
+  // get month and day
+  // const date = today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear()
+  const date = today.getMonth() + 1 + '/' + today.getDate()
+  // create an array of only the born_on attributes from the birthday object
+  const birthdaysOnly = data.birthdays.map(function (a) { return a.born_on })
+  // function to take a string and change to a date
+  const birthdaysAsDates = birthdaysOnly.map(function (a) { return new Date(a) })
+  // create a new array of only months and day?
+  // const birthdayMonthDay = birthdaysAsDates.map(function (a) { return a.getMonth() + 1 + '-' + a.getDate() + '-' + today.getFullYear() })
+  const birthdayMonthDay = birthdaysAsDates.map(function (a) { return a.getMonth() + 1 + '/' + today.getDate() })
+  //  function to compare numbers
+  const isComingUp = function (value) { if (value >= date) return true }
+  // filter through array and create a new array of only the birthdays coming up
+  const filteredBirthdays = birthdayMonthDay.filter(isComingUp)
+  // count the length of the array to get the number of birthdays coming up
+  const upcomingBirthdays = filteredBirthdays.length
+
+  console.log(today)
+  console.log(date)
+  console.log(birthdaysOnly)
+  console.log(birthdaysAsDates)
+  console.log(birthdayMonthDay)
+  console.log(filteredBirthdays)
+  console.log(upcomingBirthdays)
+
 }
 
 module.exports = {
@@ -82,6 +120,7 @@ module.exports = {
   displayUpdateBirthdayModal,
   onSuccessRemoveBirthday,
   onSuccessPatchBirthday,
-  clearBirthdays
+  clearBirthdays,
+  onSuccessStats
 
 }

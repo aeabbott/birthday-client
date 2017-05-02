@@ -48,10 +48,10 @@
     								<form id="login-form"  role="form" style="display: block;">
                       <fieldset>
     									<div class="form-group">
-    										<input type="text" name="credentials[email]" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+    										<input type="text" name="credentials[email]" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
     									</div>
     									<div class="form-group">
-    										<input type="password" name="credentials[password]" id="password" tabindex="2" class="form-control" placeholder="Password">
+    										<input type="password" name="credentials[password]" id="password" tabindex="2" class="form-control" placeholder="Password" required>
     									</div>
     									<div class="form-group">
     										<div class="row">
@@ -66,13 +66,13 @@
                     <!--Sign up form -->
     								<form id="register-form" role="form" style="display: none;">
     									<div class="form-group">
-    										<input type="text" name="credentials[email]" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+    										<input type="text" name="credentials[email]" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required>
     									</div>
     									<div class="form-group">
-    										<input type="password" name="credentials[password]" id="password" tabindex="2" class="form-control" placeholder="Password">
+    										<input type="password" name="credentials[password]" id="password" tabindex="2" class="form-control" placeholder="Password" required>
     									</div>
     									<div class="form-group">
-    										<input type="password" name="credentials[password_confirmation]" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+    										<input type="password" name="credentials[password_confirmation]" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
     									</div>
     									<div class="form-group">
     										<div class="row">
@@ -101,7 +101,7 @@
 <!-- App content after log-in -->
 <div class = 'birthday-content'>
   <!-- <h1> Welcome @username</h1> -->
-  <!-- <h2 id = 'birthday-stats'> Do you have any friends birthday's left this year?</h2> -->
+  <h2 id = 'birthday-stats'> Do you have any friends birthday's left this year?</h2>
   <button type="button" class="btn btn-primary get-all-birthdays">Show Birthdays</button>
   <!-- Add Bday  -->
   <button type="button" class="btn btn-primary add-birthday">Add Birthday</button>
@@ -216,13 +216,13 @@
         <div class="control-group">
             <label for="current_password" class="control-label">Current Password</label>
             <div class="controls">
-            <input type="password" name="passwords[old]">
+            <input type="password" name="passwords[old]" required>
             </div>
         </div>
         <div class="control-group">
             <label for="new_password" class="control-label">New Password</label>
             <div class="controls">
-                <input type="password" name="passwords[new]">
+                <input type="password" name="passwords[new]" required>
             </div>
         </div>
     </div>
