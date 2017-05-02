@@ -31,6 +31,8 @@ const signUpFailure = (error) => {
   $('#login-form')[0].reset()
   $('.birthday-created-message').hide()
   $('.birthday-updated-message').hide()
+  $('.pass-success-message').hide()
+  $('.old-password-mismatch-message').hide()
   }
 
   const signInFailure = (error) => {
@@ -40,11 +42,14 @@ const signUpFailure = (error) => {
 
 const changePasswordSuccess = (data) => {
   console.log('changePassword was successful and data is:', data)
-  store.user = data.user
+  $('.old-password-mismatch-message').hide()
+  $('.pass-success-message').show()
+
 }
 
 const changePasswordFailure = (error) => {
   console.error('changePassword failed failed ran data is:', error)
+  $('.old-password-mismatch-message').show()
 }
 
 const signOutSuccess = (data) => {

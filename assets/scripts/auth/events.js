@@ -55,6 +55,7 @@ const onSignOut = function (event) {
 const onChangePassword = function(event) {
   event.preventDefault()
   console.log('change password event just ran')
+  $('.old-password-mismatch-message').hide()
   let data = getFormFields(this)
   /** const password = data.passwords
   console.log(password)**/
@@ -69,6 +70,13 @@ const displayChangePassModal = function (event) {
   $('#password-modal').modal({show:true})
 }
 
+const onClosePassModal = function(event){
+  event.preventDefault()
+  $('.pass-success-message').hide()
+  $('.old-password-mismatch-message').hide()
+  $('#change-password')[0].reset()
+}
+
 
 const addHandlers = () => {
   $('#login-form').on('submit', onSignIn)
@@ -81,5 +89,6 @@ module.exports = {
   addHandlers,
   showSignUpForm,
   showLogInForm,
-  displayChangePassModal
+  displayChangePassModal,
+  onClosePassModal
 }

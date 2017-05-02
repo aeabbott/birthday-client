@@ -40,8 +40,8 @@ const updateBirthday = function (event) {
   const birthday = data.birthday
   let id = $('.update-birthday-btn').data('id')
   console.log(id, data)
-  if (birthday.given_name.length !== 0 && birthday.born_on.length !== 0){
-  birthdayApi.patchBirthday(id, data)
+  if (birthday.given_name.length !== 0 && birthday.born_on.length !== 0) {
+    birthdayApi.patchBirthday(id, data)
   .then(birthdayUi.onSuccessPatchBirthday)
   .catch(birthdayUi.onError)
   }

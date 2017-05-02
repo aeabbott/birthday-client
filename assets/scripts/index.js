@@ -40,4 +40,5 @@ $(() => {
   // hide success & failure messages when modals are closed
   $('.cls-add-birthday-modal').on('click', birthdayEvents.hideMessages)
   $('.clear-birthdays').on('click', birthdayEvents.onClearBirthdays)
+  $('.cls-pass-modal').on('click', authEvents.onClosePassModal)
 })
