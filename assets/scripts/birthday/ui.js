@@ -37,6 +37,7 @@ const createBirthdaySuccess = function (data) {
   $('.remove-birthday-btn').on('click', removeBirthday)
     // save button is pressed inside udpate birthday modal to update birthday
   $('.update-birthday-btn').on('click', displayUpdateBirthdayModal)
+
 }
 
 // remove birthday
@@ -111,7 +112,12 @@ const onSuccessStats = function (data) {
   const filteredBirthdays = filteredBirthdaysMonth.filter(isComingUpDay)
   // count the length of the array to get the number of birthdays coming up
   const upcomingBirthdays = filteredBirthdays.length
-  $('#birthday-stats').text('You have ' + upcomingBirthdays + " friend's birthdays remaining this year!")
+
+  if (filteredBirthdays.length === 0) {
+    $('#birthday-stats').text('Looks like you need to add some birthdays to track!')
+  } else {
+    $('#birthday-stats').text('You have ' + upcomingBirthdays + " friend's birthdays remaining this year!")
+  }
   // console.log(today)
   // console.log(currentMonth)
   // console.log(currentDay)

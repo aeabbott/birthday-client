@@ -47,12 +47,6 @@ const updateBirthday = function (event) {
   }
 }
 
-// hide alerts when modals are closed
-const hideMessages = function () {
-  $('.birthday-created-message').hide()
-  $('.birthday-updated-message').hide()
-}
-
 const onClearBirthdays = function (event) {
   event.preventDefault()
   birthdayUi.clearBirthdays()
@@ -64,6 +58,13 @@ const getBirthdaysThirtyDays = function () {
   birthdayApi.indexBirthdays()
   .then(birthdayUi.onSuccessStats)
   .catch(birthdayUi.onError)
+}
+
+// hide alerts when modals are closed
+const hideMessages = function () {
+  $('.birthday-created-message').hide()
+  $('.birthday-updated-message').hide()
+  getBirthdaysThirtyDays()
 }
 
 module.exports = {
