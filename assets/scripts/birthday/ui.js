@@ -110,6 +110,7 @@ const onSuccessStats = function (data) {
   // count the length of the array to get the number of birthdays coming up
   const upcomingBirthdays = filteredBirthdays.length
   // display messages based on how many bdays meet the criteria
+  $('#birthday-stats').show()
   if (filteredBirthdays.length === 0) {
     $('#birthday-stats').text('Looks like you need to add some birthdays to track!')
   } else {
