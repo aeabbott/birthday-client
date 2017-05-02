@@ -8,10 +8,17 @@ Amanda's amazing birthday app
 1.  All software code is licensed under GNU GPLv3. For commercial use or
     alternative licensing, please contact legal@ga.co.
 # Birthday-client
-
-# Mission Statement
+The birthdays app allows users to add and store a list of birthdays.
+The app will also tell the user, how many of their firends birthdays have birthdays left this year from the current date.
 
 # Technologies Used
+1. HTML
+1. CSS
+1. Bootstrap
+1. Jquery
+1. Handlebars
+1. Javascript
+1. Ruby on Rails
 
 # User Stories
   ### Auth User Stories
@@ -28,7 +35,28 @@ Amanda's amazing birthday app
 
 # Future Enhancements
 
-# Developement Process
+1. Converting the birthday to a user friendly display. For example, January 1st, 2001 instead of 2001-01-01
+2. Clicking the number of birthday remaining in the year, displays a modal with a list of whose birthday qualifies. 
+
+# Development Process
+
+Development steps:
+
+1. Set up authentication backend
+2. Test authetnicaiton backend
+3. Set up authentication front end
+4. Test authetnication front end w/backend
+5. Set up brithdays backend
+6. Set up CRUD actions
+7. Test birthdays CRUD actions w/Curl
+8. Set up front end for birthday CRUD
+9. Enhancements
+
+# Personal Goals for Project
+
+For the tic-tac-toe project, my front end was really basic and was lacking in "prettiness". For this project, I really wanted to dive more into bootstrap and utilize bootstrap to increase the readability of my page.
+
+In addition, I didn't get to do much with array iteration methods in the tic-tac-toe projects. For this project, I wanted to design a user feature where I would have to interate over the birthdays object and display some type of useful information to the user. I did this by displaying how many birthdays the user has left this year.
 
 # Link to ERD
 http://imgur.com/a/V9tjL
