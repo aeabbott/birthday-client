@@ -24,6 +24,7 @@ Amanda's amazing birthday app
   1. As a user, I want to be able to add new birthdays to my account so that I can continue to grow my birthday list.
   1. As a user, I want to be able to update a birthday so that I can correct any mistakes I have made.
   1. As a user, I want to be able to delete a birthday so that I don't have to remember someone's birthday I am not friends with anymore.
+  1. As a user, I want to know how many birthdays I have remaining in the year, so that I can budget properly for gifts.
 
 # Future Enhancements
 

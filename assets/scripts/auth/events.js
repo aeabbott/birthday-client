@@ -5,7 +5,7 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 
-const onSignUp = function(event) {
+const onSignUp = function (event) {
   console.log('sign up ran')
   // this is pointing to the event.target
   const data = getFormFields(this)
@@ -18,7 +18,7 @@ const onSignUp = function(event) {
 const showSignUpForm = function (event) {
   event.preventDefault()
   // switch to show the sign up form content when header tab is clicked
-  console.log('Sign up tab header was clicked')
+  // console.log('Sign up tab header was clicked')
   $('#login-form').hide()
   $('#register-form').show()
   $('#login-form-link').removeClass('active')
@@ -27,7 +27,7 @@ const showSignUpForm = function (event) {
 
 const onSignIn = function (event) {
   event.preventDefault()
-  console.log('sign in ran')
+  // console.log('sign in ran')
   const data = getFormFields(this)
   api.signIn(data)
     .then(ui.signInSuccess)
@@ -37,7 +37,7 @@ const onSignIn = function (event) {
 const showLogInForm = function (event) {
   event.preventDefault()
   // switch to show the log in form content when header tab is clicked
-  console.log('Log in tab header was clicked')
+  // console.log('Log in tab header was clicked')
   $('#login-form').show()
   $('#register-form').hide()
   $('#register-form-link').removeClass('active')
@@ -46,7 +46,7 @@ const showLogInForm = function (event) {
 
 const onSignOut = function (event) {
   event.preventDefault()
-  console.log('sign out ran')
+  // console.log('sign out ran')
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
@@ -54,7 +54,7 @@ const onSignOut = function (event) {
 
 const onChangePassword = function(event) {
   event.preventDefault()
-  console.log('change password event just ran')
+  // console.log('change password event just ran')
   $('.old-password-mismatch-message').hide()
   let data = getFormFields(this)
   /** const password = data.passwords
@@ -66,7 +66,7 @@ const onChangePassword = function(event) {
 
 const displayChangePassModal = function (event) {
   event.preventDefault()
-  console.log('change password button was clicked')
+  // console.log('change password button was clicked')
   $('#password-modal').modal({show:true})
 }
 
