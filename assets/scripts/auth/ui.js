@@ -31,7 +31,7 @@ const signInSuccess = (data) => {
   $('.birthday-updated-message').hide()
   $('.pass-success-message').hide()
   $('.old-password-mismatch-message').hide()
-  $('#birthday-stats').show()
+  $('#birthday-stats').hide()
 }
 
 const signInFailure = (error) => {
