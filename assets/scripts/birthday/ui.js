@@ -87,30 +87,39 @@ const onSuccessStats = function (data) {
   // get current date
   const today = new Date()
   // get month and day
-  // const date = today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear()
-  const date = today.getMonth() + 1 + '/' + today.getDate()
+  const currentMonth = today.getMonth() + 1
+  const currentDay = today.getDate()
   // create an array of only the born_on attributes from the birthday object
   const birthdaysOnly = data.birthdays.map(function (a) { return a.born_on })
   // function to take a string and change to a date
   const birthdaysAsDates = birthdaysOnly.map(function (a) { return new Date(a) })
-  // create a new array of only months and day?
-  // const birthdayMonthDay = birthdaysAsDates.map(function (a) { return a.getMonth() + 1 + '-' + a.getDate() + '-' + today.getFullYear() })
-  const birthdayMonthDay = birthdaysAsDates.map(function (a) { return a.getMonth() + 1 + '/' + today.getDate() })
-  //  function to compare numbers
-  const isComingUp = function (value) { if (value >= date) return true }
-  // filter through array and create a new array of only the birthdays coming up
-  const filteredBirthdays = birthdayMonthDay.filter(isComingUp)
+  // create a new object that stores months, day and year as individuval keys
+  const birthdayMonthDay = birthdaysAsDates.map(function (a) {
+    return {
+      month: a.getMonth() + 1,
+      day: a.getDate(),
+      year: today.getFullYear()
+    }
+  })
+  //  function to check if month is this month or greater
+  const isComingUpMonth = function (a) { if (a.month >= currentMonth) return true }
+  // function to check if the day is greater
+  const isComingUpDay = function (a) { if (a.day > currentDay) return true }
+  // filter through array and create a new array the birthdays that met the month conditions
+  const filteredBirthdaysMonth = birthdayMonthDay.filter(isComingUpMonth)
+  // filter through month conditions array and check for the dates to create final array
+  const filteredBirthdays = filteredBirthdaysMonth.filter(isComingUpDay)
   // count the length of the array to get the number of birthdays coming up
   const upcomingBirthdays = filteredBirthdays.length
-
-  console.log(today)
-  console.log(date)
-  console.log(birthdaysOnly)
-  console.log(birthdaysAsDates)
-  console.log(birthdayMonthDay)
-  console.log(filteredBirthdays)
-  console.log(upcomingBirthdays)
-
+  $('#birthday-stats').text('You have ' + upcomingBirthdays + " friend's birthdays remaining this year!")
+  // console.log(today)
+  // console.log(currentMonth)
+  // console.log(currentDay)
+  // console.log(birthdaysOnly)
+  // console.log(birthdaysAsDates)
+  // console.log(birthdayMonthDay)
+  // console.log(filteredBirthdays)
+  // console.log(upcomingBirthdays)
 }
 
 module.exports = {
