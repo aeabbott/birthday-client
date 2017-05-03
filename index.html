@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Amanda's Birthday App</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+<!-- Nav Bar  -->
+<nav class="navbar navbar-default">
+  <ul class = "nav">
+    <form id="sign-out" style="float:right">
+    <button type="submit" class="btn btn-default  sign-out-btn">Sign Out</button>
+    </form>
+      <button type="button" style="float:right" class="btn btn-default  sign-out-btn change-pass-btn">Change Password</button>
+    </ul>
+</nav>
+    <!-- Landing Page -->
+    <div class="jumbotron">
+        <h1>Birthday App!</h1>
+        <p>Never forget a birthday again!</p>
+    </div>
+    <!--Login in Form  -->
+    <div class="container login-signup-container">
+        	<div class="row">
+    			<div class="col-md-6 col-md-offset-3">
+    				<div class="panel panel-login">
+    					<div class="panel-heading">
+    						<div class="row">
+    							<div class="col-xs-6">
+    								<a href="#" class="active" id="login-form-link">Login</a>
+    							</div>
+    							<div class="col-xs-6">
+    								<a href="#" id="register-form-link">Register</a>
+    							</div>
+    						</div>
+    						<hr>
+    					</div>
+    					<div class="panel-body">
+    						<div class="row">
+    							<div class="col-lg-12">
+    								<form id="login-form"  role="form" style="display: block;">
+                      <fieldset>
+    									<div class="form-group">
+    										<input type="text" name="credentials[email]" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
+    									</div>
+    									<div class="form-group">
+    										<input type="password" name="credentials[password]" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+    									</div>
+    									<div class="form-group">
+    										<div class="row">
+    											<div class="col-sm-6 col-sm-offset-3">
+    												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+    											</div>
+    										</div>
+    									</div>
+                        </fieldset>
+    								</form>
+
+                    <!--Sign up form -->
+    								<form id="register-form" role="form" style="display: none;">
+    									<div class="form-group">
+    										<input type="text" name="credentials[email]" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required>
+    									</div>
+    									<div class="form-group">
+    										<input type="password" name="credentials[password]" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+    									</div>
+    									<div class="form-group">
+    										<input type="password" name="credentials[password_confirmation]" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+    									</div>
+    									<div class="form-group">
+    										<div class="row">
+    											<div class="col-sm-6 col-sm-offset-3">
+    												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-sign-up" value="Register Now">
+    											</div>
+    										</div>
+    									</div>
+    								</form>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+<!-- Sign Up Success Message  -->
+<div class = "alert-container">
+<div class="alert alert-success acct-success-message">
+  <strong>Booya!</strong> You have created an account-now log in!
+</div>
+<div class="alert alert-danger password-mismatch-message">
+  <strong>Opps!</strong> Something went wrong. Please try again.
+</div>
+</div>
+<!-- App content after log-in -->
+<div class = 'birthday-content'>
+  <h2>Do you have any friends birthday's left this year? Click show birthdays to find out!</h2>
+  <h3 id = 'birthday-stats'> Do you have any friends birthday's left this year? Click show birthdays to find out!</h3>
+  <button type="button" class="btn btn-primary get-all-birthdays">Show Birthdays</button>
+  <!-- Add Bday  -->
+  <button type="button" class="btn btn-primary add-birthday">Add Birthday</button>
+  <!-- Clear the birthdays -->
+  <button id="clearBirthdaysButton" class="btn btn-primary clear-birthdays">Clear Birthdays!</button>
+  <!-- Add Bday Modal -->
+  <form id="add-birthday">
+  <fieldset>
+  <div id="add-birthday-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+    	<div class="modal-content">
+      <div class="modal-header">
+          <h3>Add a Birthday <span class="extra-title muted"></span></h3>
+      </div>
+      <div class="modal-body form-horizontal">
+          <div class="control-group">
+              <label for="birthday_given_name" class="control-label">First Name</label>
+              <div class="controls">
+              <input type="text" name="birthday[given_name]" required>
+              </div>
+          </div>
+          <div class="control-group" >
+              <label for="birthday_family_name" class="control-label">Last Name</label>
+              <div class="controls">
+                  <input type="text" name="birthday[family_name]" required>
+              </div>
+          </div>
+          <div class="control-group">
+              <!-- <label for="birthday_nickname" class="control-label">Nickname</label>
+              <div class="controls">
+                  <input type="text" name="birthday[nickname]">
+              </div> -->
+              <div>
+                <label for="bday" class="control-label">Enter your birthday:</label>
+                  <input type="date" id="bday" name="birthday[born_on]" min="1900-01-01" max="2500-01-01" required>
+                  <span class="validity"></span>
+                </div>
+          </div>
+      </div>
+      <div class = "alert-container">
+      <div class="alert alert-success birthday-created-message">
+        <strong>Success!</strong> Birthday created!
+      </div>
+      <div class="modal-footer">
+          <button type = "button" class="btn cls-add-birthday-modal" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button type = "submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </fieldset>
+  </form>
+  <!-- Update Birthday -->
+  <form id="update-birthday" data-id="{{birthday.id}}" >
+  <fieldset>
+  <div id="update-birthday-modal" data-id="{{birthday.id}}" class="modal fade"  tabindex="-1" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h3>Update Birthday <span class="extra-title muted"></span></h3>
+      </div>
+      <div class="modal-body form-horizontal">
+          <div class="control-group">
+              <label for="birthday_given_name" class="control-label">First Name</label>
+              <div class="controls">
+              <input type="text" name="birthday[given_name]" id= 'given-name-field' required>
+              </div>
+          </div>
+          <div class="control-group" >
+              <label for="birthday_family_name" class="control-label">Last Name</label>
+              <div class="controls">
+                  <input type="text" name="birthday[family_name]" id= "family-name-field" required>
+              </div>
+          </div>
+          <div class="control-group">
+              <!-- <label for="birthday_nickname" class="control-label">Nickname</label>
+              <div class="controls">
+                  <input type="text" name="birthday[nickname]" id = "nickname-field">
+              </div> -->
+              <div>
+                <label for="bday" class="control-label">Enter your birthday:</label>
+                  <input type="date" id="update-bday" name="birthday[born_on]" min="1900-01-01" max="2500-01-01" required>
+                  <span class="validity"></span>
+                </div>
+          </div>
+      </div>
+      <div class = "alert-container">
+      <div class="alert alert-success birthday-updated-message">
+        <strong>Success!</strong> Birthday updated!
+      </div>
+      <div class="modal-footer">
+          <button type = "button" class="btn cls-add-birthday-modal" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button type = "submit" class="btn btn-primary save-update-birthday" data-id= "{{birthday.id}}">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </fieldset>
+  </form>
+</div>
+<!-- Password Modal -->
+<form id="change-password">
+<fieldset>
+<div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+  	<div class="modal-content">
+    <div class="modal-header">
+        <h3>Change Password <span class="extra-title muted"></span></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+
+        <div class="control-group">
+            <label for="current_password" class="control-label">Current Password</label>
+            <div class="controls">
+            <input type="password" name="passwords[old]" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="new_password" class="control-label">New Password</label>
+            <div class="controls">
+                <input type="password" name="passwords[new]" required>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success pass-success-message">
+      <strong>Booya!</strong> Your password change was successful!
+    </div>
+    <div class="alert alert-danger old-password-mismatch-message">
+      <strong>Opps!</strong> Looks like your old password wasn't correct. Try again.
+    </div>
+    <div class="modal-footer">
+        <button type = "button" class="btn cls-pass-modal" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type = "submit" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</div>
+</div>
+</fieldset>
+</form>
+
+<!-- handlebars to show birthdays -->
+<div id="show-all-birthdays" class="content show-all-birthdays-content">
+</div>
+
+
+
+
+
+    </body>
+</html>
