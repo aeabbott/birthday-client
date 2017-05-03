@@ -11,8 +11,8 @@ Amanda's amazing birthday app
 The birthdays app allows users to add and store a list of birthdays.
 The app will also tell the user, how many of their firends birthdays have birthdays left this year from the current date.
 
-Link to app: https://aeabbott.github.io/birthday-client/
-Link to API: https://github.com/aeabbott/birthday-api
+1. Link to app: https://aeabbott.github.io/birthday-client/
+1. Link to API repo: https://github.com/aeabbott/birthday-api
 
 ## Technologies Used
 1. HTML
