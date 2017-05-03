@@ -73,7 +73,7 @@ const onSuccessPreFillBirthdayFields = function (data) {
   $('#given-name-field').val(data.birthday.given_name)
   $('#family-name-field').val(data.birthday.family_name)
   $('#nickname-field').val(data.birthday.nickname)
-  $('#bday').attr(data.birthday.born_on)
+  $('#update-bday').val('')
 }
 
 const clearBirthdays = function () {
@@ -112,7 +112,7 @@ const onSuccessStats = function (data) {
   // display messages based on how many bdays meet the criteria
   $('#birthday-stats').show()
   if (filteredBirthdays.length === 0) {
-    $('#birthday-stats').text('Looks like you need to add some birthdays to track!')
+    $('#birthday-stats').text('Add some friends who have birthdays left this year!')
   } else {
     $('#birthday-stats').text('You have ' + upcomingBirthdays + " friend's birthdays remaining this year!")
   }
