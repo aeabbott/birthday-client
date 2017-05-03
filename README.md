@@ -13,6 +13,7 @@ The app will also tell the user, how many of their firends birthdays have birthd
 
 1. Link to app: https://aeabbott.github.io/birthday-client/
 1. Link to API repo: https://github.com/aeabbott/birthday-api
+1. Link to deployed backend: https://pacific-brushlands-38706.herokuapp.com/
 
 ## Technologies Used
 1. HTML
