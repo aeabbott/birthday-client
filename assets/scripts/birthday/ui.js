@@ -5,9 +5,20 @@ const showAllBirthdaysTemplate = require('../templates/birthday-listing.handleba
 const showOneBirthdayTemplate = require('../templates/single-birthday-list.handlebars')
 const birthdayApi = require('./api.js')
 
+
 // start functions- function to show all the birthdays with handlebars list
+
+// function ran when show all bdays button is pressed
+const displayAllBirthdays = function () {
+  console.log('display all birthdays ran')
+  birthdayApi.indexBirthdays()
+  .then(onSuccessDisplayBirthdays)
+  .catch(onError)
+}
+
+//bday success
 const onSuccessDisplayBirthdays = function (data) {
-  // console.log('show bdays was successful' + data.birthdays)
+  //  console.log('show bdays was successful' + data.birthdays)
   let showAllBirthdays = showAllBirthdaysTemplate({birthdays: data.birthdays})
   // empty the handle bars list first
   $('.show-all-birthdays-content').empty()
@@ -31,7 +42,7 @@ const createBirthdaySuccess = function (data) {
   // Add the newly created birthday to the list, when the list is already shown
   const addOneBirthday = showOneBirthdayTemplate({birthday: data.birthday})
   // console.log(addOneBirthday)
-  $('.show-all-birthdays-content').append(addOneBirthday)
+  $('.show-all-birthdays-content').html(addOneBirthday)
   // when the remove birthday button is clicked in the handle bars list
   $('.remove-birthday-btn').on('click', removeBirthday)
     // save button is pressed inside udpate birthday modal to update birthday
@@ -47,10 +58,11 @@ const removeBirthday = function (data) {
   birthdayApi.destroyBirthday(id)
   .then(onSuccessRemoveBirthday)
   .catch(onError)
-}
+  }
 
 const onSuccessRemoveBirthday = function (event) {
   // console.log('remove birthday successful was ran')
+  getUpcomingBirthdays()
 }
 
 // update birthday modal
@@ -78,6 +90,22 @@ const onSuccessPreFillBirthdayFields = function (data) {
 
 const clearBirthdays = function () {
   $('.content').empty()
+}
+
+// get birthdays in the next 30 days
+const getUpcomingBirthdays = function () {
+  // console.log('upcoming Birthdays function ran')
+  birthdayApi.indexBirthdays()
+  .then(onSuccessStats)
+  .catch(onError)
+}
+
+// hide alerts when modals are closed
+const hideMessages = function () {
+  $('.birthday-created-message').hide()
+  $('.birthday-updated-message').hide()
+  getUpcomingBirthdays()
+  displayAllBirthdays()
 }
 
 // show # of birthdays coming up
@@ -134,6 +162,9 @@ module.exports = {
   onSuccessRemoveBirthday,
   onSuccessPatchBirthday,
   clearBirthdays,
-  onSuccessStats
+  onSuccessStats,
+  displayAllBirthdays,
+  getUpcomingBirthdays,
+  hideMessages
 
 }

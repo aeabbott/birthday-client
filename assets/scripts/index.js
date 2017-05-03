@@ -4,6 +4,7 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./auth/events.js')
 const birthdayEvents = require('./birthday/events.js')
+const birthdayUi = require('./birthday/ui.js')
 
 $(() => {
   setAPIOrigin(location, config)
@@ -30,15 +31,15 @@ $(() => {
   $('#login-form-link').on('click', authEvents.showLogInForm)
   $('.change-pass-btn').on('click', authEvents.displayChangePassModal)
   // when show birthdays is clicked, display all the birthdays
-  $('.get-all-birthdays').on('click', birthdayEvents.displayAllBirthdays)
+  $('.get-all-birthdays').on('click', birthdayUi.displayAllBirthdays)
   $('.add-birthday').on('click', birthdayEvents.displayAddBirthdayModal)
   // save button is pressed inside create birthday modal to add new birthdays
   $('#add-birthday').on('submit', birthdayEvents.createNewBirthday)
   $('#update-birthday').on('submit', birthdayEvents.updateBirthday)
   // update this later
-  $('.get-all-birthdays').on('click', birthdayEvents.getBirthdaysThirtyDays)
+  $('.get-all-birthdays').on('click', birthdayUi.getUpcomingBirthdays)
   // hide success & failure messages when modals are closed
-  $('.cls-add-birthday-modal').on('click', birthdayEvents.hideMessages)
+  $('.cls-add-birthday-modal').on('click', birthdayUi.hideMessages)
   $('.clear-birthdays').on('click', birthdayEvents.onClearBirthdays)
   $('.cls-pass-modal').on('click', authEvents.onClosePassModal)
 })

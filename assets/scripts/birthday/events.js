@@ -4,12 +4,12 @@ const birthdayApi = require('./api.js')
 const birthdayUi = require('./ui.js')
 
 // function run when show all bdays button is pressed
-const displayAllBirthdays = function () {
-  // console.log('display all birthdays ran')
-  birthdayApi.indexBirthdays()
-  .then(birthdayUi.onSuccessDisplayBirthdays)
-  .catch(birthdayUi.onError)
-}
+// const displayAllBirthdays = function () {
+//   // console.log('display all birthdays ran')
+//   birthdayApi.indexBirthdays()
+//   .then(birthdayUi.onSuccessDisplayBirthdays)
+//   .catch(birthdayUi.onError)
+// }
 
 // function to display the add a birthday modal
 const displayAddBirthdayModal = function (event) {
@@ -52,29 +52,29 @@ const onClearBirthdays = function (event) {
   birthdayUi.clearBirthdays()
 }
 
-// get birthdays in the next 30 days
-const getBirthdaysThirtyDays = function () {
-  // console.log('get birthdays in the next 30 days function ran')
-  birthdayApi.indexBirthdays()
-  .then(birthdayUi.onSuccessStats)
-  .catch(birthdayUi.onError)
-}
+// // get birthdays in the next 30 days
+// const getBirthdaysThirtyDays = function () {
+//   // console.log('get birthdays in the next 30 days function ran')
+//   birthdayApi.indexBirthdays()
+//   .then(birthdayUi.onSuccessStats)
+//   .catch(birthdayUi.onError)
+// }
 
-// hide alerts when modals are closed
-const hideMessages = function () {
-  $('.birthday-created-message').hide()
-  $('.birthday-updated-message').hide()
-  getBirthdaysThirtyDays()
-  displayAllBirthdays()
-}
+// // hide alerts when modals are closed
+// const hideMessages = function () {
+//   $('.birthday-created-message').hide()
+//   $('.birthday-updated-message').hide()
+//   getBirthdaysThirtyDays()
+//   displayAllBirthdays()
+// }
 
 module.exports = {
-  displayAllBirthdays,
+  // displayAllBirthdays,
   displayAddBirthdayModal,
   createNewBirthday,
   updateBirthday,
-  hideMessages,
-  onClearBirthdays,
-  getBirthdaysThirtyDays
+  // hideMessages,
+  onClearBirthdays
+  // getBirthdaysThirtyDays
 
 }
